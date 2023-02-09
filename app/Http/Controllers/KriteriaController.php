@@ -10,6 +10,7 @@ class KriteriaController extends Controller
     public function index(){
         return view('pages.kriteria',[
             'kriteria' => Kriteria::all(),
+            'title' => 'Kriteria'
         ]);
     }
 }

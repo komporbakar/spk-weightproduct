@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AlternatifController;
+use App\Http\Controllers\AnalisaController;
 use App\Http\Controllers\KriteriaController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +25,5 @@ Route::get('/home', function () {
 });
 
 Route::get('/kriteria',[KriteriaController::class, 'index' ]);
-
-Route::get('/alternatif', function () {
-    return view('pages.alternatif');
-});
+Route::get('/alternatif', [AlternatifController::class, 'index' ]);
+Route::get('/hasil', [AnalisaController::class, 'index' ]);

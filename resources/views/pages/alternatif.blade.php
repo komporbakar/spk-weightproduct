@@ -25,14 +25,17 @@
                         </tr>
                     </tfoot>
                     <tbody>
+                        <?php $i =1; ?>
+                        @foreach ($alternatif as $item)
                         <tr>
-                            <td></td>
-                            <td colspan=""></td>
+                            <td>{{ $i++ }}</td>
+                            <td colspan="">{{ $item->nama_alternatif }}</td>
                             <td colspan="2">
                                 <a href="#" class="btn btn-warning" >Ubah</a>
                                 <a href="#" class="btn btn-danger" >Hapus</a>
                             </td>
                         </tr
+                         @endforeach
                         
                     </tbody>
                 </table>

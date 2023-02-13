@@ -24,6 +24,10 @@ Route::get('/home', function () {
     return view('pages.index');
 });
 
-Route::get('/kriteria',[KriteriaController::class, 'index' ]);
+// Data Kriteria
+Route::resource('kriteria', KriteriaController::class)->parameters([
+    'kriteria' => 'id']);
+
 Route::get('/alternatif', [AlternatifController::class, 'index' ]);
+
 Route::get('/hasil', [AnalisaController::class, 'index' ]);

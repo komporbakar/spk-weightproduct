@@ -13,8 +13,8 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Alternatif</th>
-                            <th>Nama </th>
+                            <th>Nama Kriteria</th>
+                            <th>Nama Sub Kriteria</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -32,7 +32,22 @@
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td colspan="">{{ $item->name }}</td>
-                            <td><button class="badge bg-primary">{{ $item->name }}</button></td>
+
+                            <td>
+                                <div colspan="3">
+
+                                    <div class="border-1">
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                @foreach ($item->subkriteria as $sub)
+                                                <button class="badge btn-primary">
+                                                    {{ $sub->name }}
+                                                </button> 
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div></td>
+                                </div>
                             <td colspan="1">
                                 <a href="{{ route('subkriteria.create', $item->id) }}" class="btn btn-success">Tambah Sub</a> 
                                 <a href="{{ route('subkriteria.edit', $item->id) }}" class="btn btn-warning">Edit</a>

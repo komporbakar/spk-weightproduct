@@ -15,9 +15,9 @@ class SubKriteriaController extends Controller
      */
     public function index()
     {
-        $sub = New Kriteria();
+        $sub = Kriteria::all();
         return view('pages.subKriteria.index',[
-            'subkriteria' => $sub->subkriteria()
+            'subkriteria' => $sub
         ]);
     }
 

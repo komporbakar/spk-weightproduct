@@ -32,7 +32,11 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Data Kriteria</span></a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('subkriteria.index') }}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Sub Kriteria</span></a>
+            </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="/alternatif">

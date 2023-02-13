@@ -9,7 +9,7 @@ class CreateSubKriteriasTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return voidphp artisan serve
      */
     public function up()
     {

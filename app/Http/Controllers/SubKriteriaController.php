@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
+use App\Models\SubKriteria;
 use Illuminate\Http\Request;
 
-class KriteriaController extends Controller
+class SubKriteriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        return view('pages.kriteria.kriteria',[
-            'kriteria' => Kriteria::all(),
-            'title' => 'Kriteria'
+    public function index()
+    {
+        $sub = New Kriteria();
+        return view('pages.subKriteria.index',[
+            'subkriteria' => $sub->subkriteria()
         ]);
     }
 
@@ -24,9 +26,12 @@ class KriteriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $kriteria = Kriteria::find($id);
+        return view('pages.subKriteria.create',[
+            'kriteria' => $kriteria,
+        ]);
     }
 
     /**
@@ -35,12 +40,21 @@ class KriteriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    // public $id_kriteria;
+    public function store(Request $request, $id)
     {
-        $data = $request->all();
-        Kriteria::create($data);
-
-        return redirect()->route('kriteria.index');
+        $data = $request->validate([
+            'name' => ['required'],
+            'bobot' => ['required']
+        ]);
+        $kriteria = Kriteria::find($id);
+		$kriteria->subkriteria()->create([
+            'name' => $request->name,
+            'bobot' => $request->bobot
+        ]);
+        return redirect()->route('subkriteria.index');
+		$this->reset('name', 'bobot');
+		$this->emit('saved');
     }
 
     /**
@@ -62,9 +76,7 @@ class KriteriaController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.kriteria.edit',[
-            'kriteria' => Kriteria::findOrFail($id),
-        ]);
+        //
     }
 
     /**
@@ -76,13 +88,7 @@ class KriteriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-
-        $item = Kriteria::findOrFail($id);
-
-        $item->update($data);
-
-        return redirect()->route('kriteria.index');
+        //
     }
 
     /**
@@ -93,9 +99,6 @@ class KriteriaController extends Controller
      */
     public function destroy($id)
     {
-        $item = Kriteria::findorFail($id);
-        $item->delete();
-
-        return redirect()->route('kriteria.index');
+        //
     }
 }

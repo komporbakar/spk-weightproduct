@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHasilsTable extends Migration
+class CreateAlternatifsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateHasilsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hasils', function (Blueprint $table) {
+        Schema::create('alternatifs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nama_alternatif');
+            $table->boolean('jenis');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateHasilsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hasils');
+        Schema::dropIfExists('alternatifs');
     }
 }

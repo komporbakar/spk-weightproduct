@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAlternatifsTable extends Migration
+class CreateNilaisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateAlternatifsTable extends Migration
      */
     public function up()
     {
-        Schema::create('alternatifs', function (Blueprint $table) {
+        Schema::create('nilais', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('nama_alternatif');
+            $table->integer('id_alternatif');
+            $table->integer('id_kriteria');
+            $table->double('nilai');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateAlternatifsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alternatifs');
+        Schema::dropIfExists('nilais');
     }
 }

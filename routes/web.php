@@ -18,28 +18,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', fn () => redirect()->route('login'));
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('pages.index');
+    })->name('dashboard');
 });
 
-Route::get('/home', function () {
-    return view('pages.index');
+// ROUTING ADMIN
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    // Data Kriteria
+    Route::resource('kriteria', KriteriaController::class)->parameters([
+        'kriteria' => 'id']);
+
+    Route::resource('alternatif', AlternatifController::class);
+    Route::resource('nilai', NilaiController::class);
+
+    Route::get('subkriteria', [SubKriteriaController::class, 'index'])->name('subkriteria.index');
+    Route::get('/subkriteria/{id}/create', [SubKriteriaController::class, 'create'])->name('subkriteria.create');
+    Route::get('subkriteria/{id}/edit', [SubKriteriaController::class, 'edit'])->name('subkriteria.edit');
+    Route::get('subkriteria/{id}/update', [SubKriteriaController::class, 'update'])->name('subkriteria.update');
+    Route::post('subkriteria/{id}/destroy', [SubKriteriaController::class, 'destroy'])->name('subkriteria.destroy');
+
+    Route::post('/subkriteria/{id}/store', [SubKriteriaController::class, 'store'])
+    ->name('subkriteria.store');
+
+    Route::get('/hasil', [AnalisaController::class, 'index' ]);
 });
-
-// Data Kriteria
-Route::resource('kriteria', KriteriaController::class)->parameters([
-    'kriteria' => 'id']);
-
-Route::resource('alternatif', AlternatifController::class);
-Route::resource('nilai', NilaiController::class);
-
-Route::get('subkriteria', [SubKriteriaController::class, 'index'])->name('subkriteria.index');
-Route::get('/subkriteria/{id}/create', [SubKriteriaController::class, 'create'])->name('subkriteria.create');
-Route::get('subkriteria/{id}/edit', [SubKriteriaController::class, 'edit'])->name('subkriteria.edit');
-Route::get('subkriteria/{id}/update', [SubKriteriaController::class, 'update'])->name('subkriteria.update');
-Route::post('subkriteria/{id}/destroy', [SubKriteriaController::class, 'destroy'])->name('subkriteria.destroy');
-
-Route::post('/subkriteria/{id}/store', [SubKriteriaController::class, 'store'])
-->name('subkriteria.store');
-
-Route::get('/hasil', [AnalisaController::class, 'index' ]);

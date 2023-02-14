@@ -13,7 +13,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/home">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -28,7 +28,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/kriteria">
+                <a class="nav-link" href="{{ route('kriteria.index') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Data Kriteria</span></a>
             </li>
@@ -39,7 +39,7 @@
             </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/alternatif">
+                <a class="nav-link" href="{{ route('alternatif.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Alternatif</span></a>
             </li>

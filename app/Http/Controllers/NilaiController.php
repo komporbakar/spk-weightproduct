@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kriteria;
-use App\Models\SubKriteria;
 use Illuminate\Http\Request;
 
-class SubKriteriaController extends Controller
+class NilaiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +13,7 @@ class SubKriteriaController extends Controller
      */
     public function index()
     {
-        $sub = Kriteria::all();
-        return view('pages.subKriteria.index',[
-            'subkriteria' => $sub
-        ]);
+        return view('pages.perhitungan.index');
     }
 
     /**
@@ -26,12 +21,9 @@ class SubKriteriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        $kriteria = Kriteria::find($id);
-        return view('pages.subKriteria.create',[
-            'kriteria' => $kriteria,
-        ]);
+        //
     }
 
     /**
@@ -40,21 +32,9 @@ class SubKriteriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public $id_kriteria;
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => ['required'],
-            'bobot' => ['required']
-        ]);
-        $kriteria = Kriteria::find($id);
-		$kriteria->subkriteria()->create([
-            'name' => $request->name,
-            'bobot' => $request->bobot
-        ]);
-        return redirect()->route('subkriteria.index');
-		$this->reset('name', 'bobot');
-		$this->emit('saved');
+        //
     }
 
     /**
@@ -74,12 +54,9 @@ class SubKriteriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public $id_kriteria;
     public function edit($id)
     {
-        $subkriteria = Kriteria::find($id)->subkriteria()->get();
-        // $kriteria = SubKriteria::find($this->id_kriteria);
-        return view('pages.subKriteria.edit',compact('subkriteria'));
+        //
     }
 
     /**
@@ -102,9 +79,6 @@ class SubKriteriaController extends Controller
      */
     public function destroy($id)
     {
-        $subkriteria = SubKriteria::findOrFail($id);
-        $subkriteria->delete();
-
-        return redirect()->back();
+        //
     }
 }

@@ -7,6 +7,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Data Alternatif</h6>
             <a href="#" class="btn btn-success mt-3"  data-toggle="modal" data-target="#TambahAlternatif">+ Tambah Data</a>
         </div>
+        Jumlah Data Kriteria ({{ $kriteria->count() }})
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

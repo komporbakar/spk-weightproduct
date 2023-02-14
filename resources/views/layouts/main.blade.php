@@ -20,6 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ url('/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
 </head>
 

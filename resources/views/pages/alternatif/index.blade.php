@@ -9,6 +9,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                <h5>Jumlah Data Alternatif ({{ $alternatif->count() }})</h5>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -49,7 +50,7 @@
         </div>
     </div>
 
-    <div class="modal py-5" id="TambahAlternatif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    {{-- <div class="modal py-5" id="TambahAlternatif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog py-4" role="document">
             <div class="modal-content mb-4" >
@@ -79,5 +80,5 @@
                 </div>
             </div>
         </div>
-      </div>
+      </div> --}}
 @endsection

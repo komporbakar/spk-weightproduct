@@ -5,7 +5,6 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Sub kriteria</h6>
-            <a href="{{ route('alternatif.create') }}" class="btn btn-success mt-3" ">+ Tambah Data</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -49,15 +48,15 @@
                                     </div></td>
                                 </div>
                             <td colspan="1">
-                                <a href="{{ route('subkriteria.create', $item->id) }}" class="btn btn-success">Tambah Sub</a> 
+                                <a href="{{ route('subkriteria.create', $item->id) }}" class="btn btn-success">Tambah</a> 
                                 <a href="{{ route('subkriteria.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                <form action="{{ route('subkriteria.destroy', $item->id) }}" method="post" class="d-inline">
+                                {{-- <form action="{{ route('subkriteria.destroy', $item->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">
                                         Hapus
                                     </button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr
                          @endforeach

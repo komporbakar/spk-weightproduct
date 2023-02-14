@@ -14,14 +14,18 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Kode</th>
                             <th>Nama Alternatif</th>
+                            <th>Jenis Kelamin</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>No</th>
+                            <th>Kode</th>
                             <th>Nama Alternatif</th>
+                            <th>Jenis Kelamin</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
@@ -30,7 +34,15 @@
                         @foreach ($alternatif as $item)
                         <tr>
                             <td>{{ $i++ }}</td>
+                            <td colspan="">{{ $item->kode }}</td>
                             <td colspan="">{{ $item->name }}</td>
+                            <td colspan="">
+                                @if ($item->jenis == 0)
+                            Laki-Laki
+                            @else
+                                Perempuan
+                            @endif    
+                            </td>
                             <td colspan="1">
                                 <a href="{{ route('alternatif.edit', $item->id) }}" class="btn btn-warning">Edit</a>
                                 <form action="{{ route('alternatif.destroy', $item->id) }}" method="post" class="d-inline">

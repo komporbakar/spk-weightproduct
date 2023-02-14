@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alternatif;
+use App\Models\Kriteria;
+use App\Models\Nilai;
 use Illuminate\Http\Request;
 
 class NilaiController extends Controller
@@ -13,7 +16,10 @@ class NilaiController extends Controller
      */
     public function index()
     {
-        return view('pages.perhitungan.index');
+        // $nilai = Nilai::with(['kriteria'])->get();
+        $alternatif = Alternatif::orderBy('kode')->get();
+		$kriteria = Kriteria::orderBy('kode')->get();
+        return view('pages.perhitungan.index', compact('alternatif','kriteria',));
     }
 
     /**

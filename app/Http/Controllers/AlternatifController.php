@@ -28,8 +28,9 @@ class AlternatifController extends Controller
         ]);
 
         Alternatif::create([
+            'kode' => $request->kode,
             'name' => $request->name,
-            'jenis' => mt_rand(1,6),
+            'jenis' => $request->jenis,
         ]);
         return redirect()->route('alternatif.index');
     }
@@ -44,13 +45,25 @@ class AlternatifController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'kode' => ['required'],
             'name' => ['required'],
+            'jenis' => ['required'],
         ]);
         $alternatif =  Alternatif::findOrFail($id);
         $alternatif->update([
+            'kode' => $request->kode,
             'name' => $request->name,
+            'jenis' => $request->jenisame,
         ]);
 
         return redirect()->route('alternatif.index');
+    }
+
+    public function destroy($id)
+    {
+        $subkriteria = Alternatif::findOrFail($id);
+        $subkriteria->delete();
+
+        return redirect()->back();
     }
 }

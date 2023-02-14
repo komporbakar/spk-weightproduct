@@ -10,7 +10,12 @@ class Nilai extends Model
     use HasFactory;
 
 
-    public function kriteria(){
-        return $this->belongsTo(Kriteria::class);
-    }
+    // public function kriteria(){
+    //     return $this->hasMany(Kriteria::class, 'id_kriteria', 'id');
+    // }
+
+    public function kriteria()
+	{
+		return $this->belongsToMany(Kriteria::class)->withPivot('nilai');
+	}
 }

@@ -48,8 +48,8 @@
                                     </div></td>
                                 </div>
                             <td colspan="1">
-                                <a href="{{ route('subkriteria.create', $item->id) }}" class="btn btn-success">Tambah</a> 
-                                <a href="{{ route('subkriteria.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                {{-- <a href="{{ route('subkriteria.create', $item->id) }}" class="btn btn-success">Tambah</a>  --}}
+                                <a href="{{ route('subkriteria.edit', $item->id) }}" class="btn btn-info">Tambah</a>
                                 {{-- <form action="{{ route('subkriteria.destroy', $item->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')

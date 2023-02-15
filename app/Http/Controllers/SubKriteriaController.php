@@ -52,7 +52,7 @@ class SubKriteriaController extends Controller
             'name' => $request->name,
             'bobot' => $request->bobot
         ]);
-        return redirect()->route('subkriteria.index');
+        return redirect()->back();
 		$this->reset('name', 'bobot');
 		$this->emit('saved');
     }
@@ -78,8 +78,9 @@ class SubKriteriaController extends Controller
     public function edit($id)
     {
         $subkriteria = Kriteria::find($id)->subkriteria()->get();
+        $kriteria = Kriteria::find($id);
         // $kriteria = SubKriteria::find($this->id_kriteria);
-        return view('pages.subKriteria.edit',compact('subkriteria'));
+        return view('pages.subKriteria.edit',compact('subkriteria','kriteria'));
     }
 
     /**

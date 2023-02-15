@@ -9,5 +9,10 @@ class Alternatif extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','jenis'];
+    protected $fillable = ['kode','name','jenis'];
+
+    public function kriteria()
+	{
+		return $this->belongsToMany(Kriteria::class)->withPivot('nilai');
+	}
 }

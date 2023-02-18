@@ -15,8 +15,10 @@ class CreateNilaisTable extends Migration
     {
         Schema::create('nilais', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_alternatif');
-            $table->integer('id_kriteria');
+            // $table->integer('id_alternatif');
+            // $table->integer('id_kriteria');
+            $table->foreignId('id_alternatif')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('id_kriteria')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->double('nilai');
             $table->timestamps();
         });

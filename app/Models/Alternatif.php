@@ -9,6 +9,9 @@ class Alternatif extends Model
 {
     use HasFactory;
 
+    // lepaskan proteksi mass assignment
+	protected $guarded = [];
+
     protected $fillable = ['kode','name','jenis'];
 
     public function kriteria()

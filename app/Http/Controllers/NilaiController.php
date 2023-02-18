@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Alternatif;
 use App\Models\Kriteria;
 use App\Models\Nilai;
+use App\Models\SubKriteria;
 use Illuminate\Http\Request;
 
 class NilaiController extends Controller
 {
+    public $alternatif;
+	public $kriterias;
+	public $nilai = [];
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +23,10 @@ class NilaiController extends Controller
         // $nilai = Nilai::with(['kriteria'])->get();
         $alternatif = Alternatif::orderBy('kode')->get();
 		$kriteria = Kriteria::orderBy('kode')->get();
-        return view('pages.perhitungan.index', compact('alternatif','kriteria',));
+        return view('pages.perhitungan.index', [
+            'alternatif' => $alternatif,
+            'kriteria' => $kriteria
+        ]);
     }
 
     /**
@@ -62,7 +69,17 @@ class NilaiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alternatif = Alternatif::findOrFail($id);
+        $kriteria = Kriteria::all();
+    
+        $alternatif_kriteria = $alternatif->kriteria()->get();
+    
+        $subkriteria_bobot = [];
+        foreach ($kriteria as $k) {
+            $subkriteria_bobot[$k->id] = $k->subkriteria()->pluck('bobot', 'id')->toArray();
+        }
+    
+        return view('pages.perhitungan.edit', compact('alternatif', 'kriteria', 'alternatif_kriteria', 'subkriteria_bobot'));
     }
 
     /**
@@ -74,7 +91,21 @@ class NilaiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $alternatif = Alternatif::findOrFail($id);
+        $alternatif->kriteria()->sync([]);
+
+        $subkriteria_id = $request->input('subkriteria_id');
+
+        $data = [];
+
+        foreach ($subkriteria_id as $key => $value) {
+            $subkriteria = SubKriteria::findOrFail($value);
+            $data[$subkriteria->kriteria_id] = ['nilai' => $subkriteria->bobot];
+        }
+
+        $alternatif->kriteria()->sync($data);
+
+        return redirect()->route('nilai.index');
     }
 
     /**

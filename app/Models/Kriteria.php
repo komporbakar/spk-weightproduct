@@ -9,12 +9,19 @@ class Kriteria extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $fillable = [
         'kode', 'name', 'bobot', 'type'
     ];
 
     public function subkriteria()
     {
-        return $this->hasMany(SubKriteria::class, 'id_kriteria');
+        return $this->hasMany(SubKriteria::class);
     }
+
+    public function alternatif()
+	{
+		return $this->belongsToMany(Alternatif::class)->withPivot('nilai');
+	}
 }

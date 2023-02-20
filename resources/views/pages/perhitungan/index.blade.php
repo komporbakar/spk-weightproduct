@@ -15,6 +15,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Alternatif</th>
+                            <th>Kode Alternatif</th>
                             @foreach ($kriteria as $krit )
                             <th>{{ $krit->kode }}</th>
                             @endforeach
@@ -25,6 +26,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Alternatif</th>
+                            <th>Kode Alternatif</th>
                             @foreach ($kriteria as $krit )
                             <th>{{ $krit->kode }}</th>
                             @endforeach
@@ -38,10 +40,11 @@
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td colspan="">{{ $alt->name }}</td>
+                            <td colspan="">{{ $alt->kode }}</td>
                             @php
                             $nilai = [];
 							foreach ($kriteria as $k) {
-									$ks = $k->find('id');
+                                    $ks = $alt->kriteria->find($k->id);
 									$nilai[] = $ks ? $ks->pivot->nilai : 0;
 								}
 							@endphp
@@ -51,7 +54,7 @@
                             </td>
                             @endforeach
                             <td colspan="1">
-                                <a href="" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('nilai.edit', $alt->id) }}" class="btn btn-info">Penilaian</a>
                                 <form action="" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
@@ -61,12 +64,12 @@
                                 </form>
                             </td>
                         </tr>
-                         {{-- @endforeach --}}
+                        {{-- @endforeach --}}
                         
-                         @empty
-                         
-                         <tr>
-                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" colspan="{{ $kriteria->count() + 4 }}">Belum ada data alternatif.</td>
+                        @empty
+                        
+                        <tr>
+                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm" colspan="{{ $kriteria->count() + 4 }}">Belum ada data alternatif.</td>
 						</tr>
 							
 						@endforelse

@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SubKriteria extends Model
 {
     use HasFactory;
+
+    protected $table = 'sub_kriterias';
+
     protected $fillable = ['name', 'bobot'];
 
     public function kriteria()

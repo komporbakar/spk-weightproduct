@@ -31,15 +31,19 @@
                                     <select name="subkriteria_id[]" class="form-control">
                                         <option value="">-- Pilih --</option>
                                         @foreach ($k->subkriteria as $sk)
-                                            <option value="{{ $sk->id }}"
-                                                @foreach ($alternatif_kriteria as $ak)
-                                                    @if ($sk->kriteria_id == $k->id && $alternatif->subkriteria_id == $sk->id)
-                                                        selected
-                                                    @endif
-                                                @endforeach
-                                                >{{ $sk->name }} ({{ $subkriteria_bobot[$k->id][$sk->id] }})</option>
-                                            @endforeach
-                                        </select>
+                                        @php
+                                            $alternatifKriteria = DB::table('alternatif_kriteria')
+                                                ->where('alternatif_id', $alternatif->id)
+                                                ->where('kriteria_id', $k->id)
+                                                ->first();
+                                            $selected = '';
+                                            if ($alternatifKriteria && $alternatifKriteria->nilai == $sk->bobot) {
+                                                $selected = 'selected';
+                                            }
+                                        @endphp
+                                        <option value="{{ $sk->id }}" {{ $selected }}>{{ $sk->name }} ({{ $subkriteria_bobot[$k->id][$sk->id] }})</option>
+                                        @endforeach
+                                    </select>
                                     </td>
                                 </tr>
                             @endforeach
@@ -52,8 +56,5 @@
             </div>
         </div>
     </div>
-
-
-
 <!-- /.container-fluid -->
 @endsection

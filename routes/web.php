@@ -48,5 +48,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/subkriteria/{id}/store', [SubKriteriaController::class, 'store'])
     ->name('subkriteria.store');
 
-    Route::get('/hasil', [AnalisaController::class, 'index' ]);
+    Route::get('/hasil', [AnalisaController::class, 'index' ])->name('hasil');
+    Route::get('/print', [AnalisaController::class, 'print' ])->name('print');
 });

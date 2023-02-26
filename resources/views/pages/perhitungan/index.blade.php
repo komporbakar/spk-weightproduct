@@ -5,7 +5,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Data Perhitungan</h6>
-            <a href="{{ route('alternatif.create') }}" class="btn btn-success mt-3" ">+ Tambah Data</a>
+            <a href="{{ route('hasil') }}" class="btn btn-success mt-3" ">Proses Penilaian</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

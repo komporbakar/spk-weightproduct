@@ -7,6 +7,7 @@ use App\Models\Kriteria;
 use App\Models\Nilai;
 use App\Models\SubKriteria;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class NilaiController extends Controller
 {
@@ -103,9 +104,16 @@ class NilaiController extends Controller
             $data[$subkriteria->kriteria_id] = ['nilai' => $subkriteria->bobot];
         }
 
-        $alternatif->kriteria()->sync($data);
+        $success = $alternatif->kriteria()->sync($data);
+        if ($success) {
+            Alert::success('Data Berhasil diubah', 'Success Message');
+            return redirect()->route('nilai.index');
+        } else {
+            Alert::success('Data Berhasil diubah', 'Success Message');
+            return redirect()->route('nilai.index');
+        }
+        
 
-        return redirect()->route('nilai.index');
     }
 
     /**

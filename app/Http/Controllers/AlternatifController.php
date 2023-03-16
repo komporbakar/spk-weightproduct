@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alternatif;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AlternatifController extends Controller
 {
@@ -27,12 +28,19 @@ class AlternatifController extends Controller
             'name' => ['required'],
         ]);
 
-        Alternatif::create([
+        $data = Alternatif::create([
             'kode' => $request->kode,
             'name' => $request->name,
             'jenis' => $request->jenis,
         ]);
-        return redirect()->route('alternatif.index');
+
+        if($data) {
+            Alert::Success('Data berhasil ditambahkan', 'Success Message');
+            return redirect()->route('alternatif.index');
+            ;
+        } else {
+            return redirect(route('alternatif.create'));
+        }
     }
 
     public function edit($id){
@@ -50,20 +58,34 @@ class AlternatifController extends Controller
             'jenis' => ['required'],
         ]);
         $alternatif =  Alternatif::findOrFail($id);
-        $alternatif->update([
+        $update = $alternatif->update([
             'kode' => $request->kode,
             'name' => $request->name,
-            'jenis' => $request->jenisame,
+            'jenis' => $request->jenis,
         ]);
 
-        return redirect()->route('alternatif.index');
+        if ($update) {
+            Alert::success('Data Berhasil di Update','success message');
+            return redirect()->route('alternatif.index');
+        } else {
+            Alert::error('Data gagal di Hapus');
+            return redirect()->route('alternatif.index');
+        }
+        
+
     }
 
     public function destroy($id)
     {
         $subkriteria = Alternatif::findOrFail($id);
-        $subkriteria->delete();
+        $delete = $subkriteria->delete();
+        if($delete){
+            Alert::success('Data Berhasil di Hapus','success message');
+            return redirect()->back();
+        } else{
+            Alert::error('Data gagal di Hapus');
+            return redirect()->back();
+        }
 
-        return redirect()->back();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kriteria;
 use App\Models\SubKriteria;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SubKriteriaController extends Controller
 {
@@ -48,10 +49,18 @@ class SubKriteriaController extends Controller
             'bobot' => ['required']
         ]);
         $kriteria = Kriteria::find($id);
-		$kriteria->subkriteria()->create([
+		$success = $kriteria->subkriteria()->create([
             'name' => $request->name,
             'bobot' => $request->bobot
         ]);
+
+        if($success){
+            Alert::success('Data Berhasil ditambahkan', 'Success Message');
+            return redirect()->back();
+        } else {
+            Alert::error('Data Gagal ditambahkan', 'Error Message');
+            return redirect()->back();
+        }
         return redirect()->back();
 		$this->reset('name', 'bobot');
 		$this->emit('saved');
@@ -104,7 +113,15 @@ class SubKriteriaController extends Controller
     public function destroy($id)
     {
         $subkriteria = SubKriteria::findOrFail($id);
-        $subkriteria->delete();
+        $delete = $subkriteria->delete();
+
+        if ($delete) {
+            Alert::success('Data Berhasil di Hapus','success message');
+            return redirect()->back();
+        } else {
+            Alert::error('Data gagal di Hapus');
+            return redirect()->back();
+        }
 
         return redirect()->back();
     }

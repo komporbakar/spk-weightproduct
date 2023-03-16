@@ -72,7 +72,7 @@
 
     {{-- Script --}}
     @include('components.script')
-
 </body>
+
 
 </html>

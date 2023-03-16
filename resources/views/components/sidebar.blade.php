@@ -12,7 +12,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -27,24 +27,24 @@
             </div>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item {{ Request::is('admin/kriteria*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('kriteria.index') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Data Kriteria</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item  {{ Request::is('admin/subkriteria*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('subkriteria.index') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Sub Kriteria</span></a>
             </li>
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            <li class="nav-item  {{ Request::is('admin/alternatif*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('alternatif.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Alternatif</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item  {{ Request::is('admin/nilai*') || Request::is('admin/hasil') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('nilai.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Nilai</span></a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KriteriaController extends Controller
 {
@@ -38,9 +39,16 @@ class KriteriaController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        Kriteria::create($data);
+        $success = Kriteria::create($data);
 
-        return redirect()->route('kriteria.index');
+        if($success){
+            Alert::success('Data Berhasil ditambahkan', 'Success Message');
+            return redirect()->route('kriteria.index');
+        } else {
+            return redirect()->route('kriteria.index');
+
+        }
+
     }
 
     /**
@@ -80,9 +88,16 @@ class KriteriaController extends Controller
 
         $item = Kriteria::findOrFail($id);
 
-        $item->update($data);
+        $update = $item->update($data);
 
-        return redirect()->route('kriteria.index');
+        if($update){
+            Alert::success('Data Berhasil di Update','success message');
+            return redirect()->route('kriteria.index');
+        } else{
+            Alert::error('Data gagal di Hapus');
+            return redirect()->route('kriteria.index');
+        }
+
     }
 
     /**
@@ -94,8 +109,14 @@ class KriteriaController extends Controller
     public function destroy($id)
     {
         $item = Kriteria::findorFail($id);
-        $item->delete();
+        $delete = $item->delete();
 
-        return redirect()->route('kriteria.index');
+        if ($delete) {
+            Alert::success('Data Berhasil di Hapus','success message');
+            return redirect()->route('kriteria.index');
+        } else {
+            Alert::error('Data gagal di Hapus');
+            return redirect()->route('kriteria.index');
+        }
     }
 }

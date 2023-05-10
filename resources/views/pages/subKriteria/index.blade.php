@@ -17,50 +17,41 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Alternatif</th>
-                            <th>Nama </th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         <?php $i =1; ?>
                         @foreach ($subkriteria as $item)
-                        <tr>
-                            <td>{{ $i++ }}</td>
-                            <td colspan="">{{ $item->name }}</td>
+                            <tr>
+                                <td>{{ $i++ }}</td>
+                                <td colspan="">{{ $item->name }}</td>
 
-                            <td>
-                                <div colspan="3">
+                                <td>
+                                    <div colspan="3">
 
-                                    <div class="border-1">
-                                        <div class="row">
-                                            <div class="col-auto">
-                                                @foreach ($item->subkriteria as $sub)
-                                                <button class="badge btn-primary">
-                                                    {{ $sub->name }}
-                                                </button> 
-                                                @endforeach
+                                        <div class="border-1">
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    @foreach ($item->subkriteria as $sub)
+                                                    <button class="badge btn-primary">
+                                                        {{ $sub->name }}
+                                                    </button> 
+                                                    @endforeach
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div></td>
-                                </div>
-                            <td colspan="1">
-                                {{-- <a href="{{ route('subkriteria.create', $item->id) }}" class="btn btn-success">Tambah</a>  --}}
-                                <a href="{{ route('subkriteria.edit', $item->id) }}" class="btn btn-info">Tambah</a>
-                                {{-- <form action="{{ route('subkriteria.destroy', $item->id) }}" method="post" class="d-inline">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger">
-                                        Hapus
-                                    </button>
-                                </form> --}}
-                            </td>
-                        </tr
-                         @endforeach
-                        
+                                        </div></td>
+                                    </div>
+                                <td colspan="1">
+                                    {{-- <a href="{{ route('subkriteria.create', $item->id) }}" class="btn btn-success">Tambah</a>  --}}
+                                    <a href="{{ route('subkriteria.edit', $item->id) }}" class="btn btn-info">Tambah</a>
+                                    {{-- <form action="{{ route('subkriteria.destroy', $item->id) }}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger">
+                                            Hapus
+                                        </button>
+                                    </form> --}}
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

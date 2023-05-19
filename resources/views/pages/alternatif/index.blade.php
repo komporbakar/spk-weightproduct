@@ -20,15 +20,6 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Kode</th>
-                            <th>Nama Alternatif</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         <?php $i =1; ?>
                         @foreach ($alternatif as $item)
@@ -53,8 +44,8 @@
                                     </button>
                                 </form>
                             </td>
-                        </tr
-                         @endforeach
+                        </tr>
+                        @endforeach
                         
                     </tbody>
                 </table>

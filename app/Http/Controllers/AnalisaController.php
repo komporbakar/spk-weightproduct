@@ -27,10 +27,14 @@ class AnalisaController extends Controller
 	{
 		$alternatifs = Alternatif::orderBy('kode')->get();
 		$kriterias = Kriteria::orderBy('kode')->get();
+		
 		// penentuan nilai bobot
 		$bobots = [];
 		foreach ($kriterias as $kr) {
 			$bobots[] = $kr->bobot / $kriterias->sum('bobot');
+		}
+		if ($kr->type == 1){
+			$bobots[count($bobots) -1] *= -1;
 		}
 
 		// penentuan matriks keputusan

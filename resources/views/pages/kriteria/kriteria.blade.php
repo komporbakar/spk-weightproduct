@@ -21,16 +21,6 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>No</th>
-                                <th>Kode Kriteria</th>
-                                <th>Nama Kriteria</th>
-                                <th>Bobot</th>
-                                <th>Jenis</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
                         <?php $i =1; ?>    
                             @foreach ($kriteria as $item)

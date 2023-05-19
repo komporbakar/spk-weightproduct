@@ -9,7 +9,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <h5>Dummy</h5>
+                {{-- <h5>Dummy</h5> --}}
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -22,17 +22,6 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Alternatif</th>
-                            <th>Kode Alternatif</th>
-                            @foreach ($kriteria as $krit )
-                            <th>{{ $krit->kode }}</th>
-                            @endforeach
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
                     <tbody>
                         <?php $i =1; ?>
                         @forelse ($alternatif as $index => $alt)

@@ -124,6 +124,14 @@ class NilaiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $nilai = Alternatif::findOrFail($id);
+        $delete = $nilai->delete();
+        if($delete){
+            Alert::success('Data Berhasil di Hapus','success message');
+            return redirect()->back();
+        } else{
+            Alert::error('Data gagal di Hapus');
+            return redirect()->back();
+        }
     }
 }

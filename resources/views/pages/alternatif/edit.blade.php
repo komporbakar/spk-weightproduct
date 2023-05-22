@@ -15,18 +15,18 @@
                 @method('PUT')
                 @csrf
                 <div class="form-group">
-                    <label for="name">Kode ALternaitf</label>
-                    <input type="text" name="kode" id="" class="form-control" value="{{ $alternatif->kode ?? old('kode') }}">
+                    <label for="kode">Kode Alternatif</label>
+                    <input type="text" name="kode" id="" class="form-control" value="{{ $alternatif->kode ?? old('kode') }}" required>
                 </div>
                 <div class="form-group">
                     <label for="name">Nama Alternatif</label>
-                    <input type="text" name="name" id="" class="form-control" value="{{ $alternatif->name }}">
+                    <input type="text" name="name" id="" class="form-control" value="{{ $alternatif->name }}" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="name">Jenis Kelamin</label>
                     <select name="jenis" id="" value="{{ $alternatif->id }}" class="form-control">
-                        <option value="{{ $alternatif->jenis }}" disabled selected>
+                        <option value="{{ $alternatif->jenis }}" disabled selected required>
                             @if ($alternatif->jenis)
                             Perempuan
                             @else

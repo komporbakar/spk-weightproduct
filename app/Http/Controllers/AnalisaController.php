@@ -25,22 +25,31 @@ class AnalisaController extends Controller
 
     public function proses()
 	{
+		// Pengambilan data Alternatif & Kriteria
 		$alternatifs = Alternatif::orderBy('kode')->get();
 		$kriterias = Kriteria::orderBy('kode')->get();
 		
-		// penentuan nilai bobot
+		// pembuatan variable bobots yang berisi array kosong
 		$bobots = [];
+
+		// pengulangan kriteria yang telah diambil
 		foreach ($kriterias as $kr) {
+			// kriteria yang dilakukan perulangan berdasarkan bobot dibagi semua kriteria yang bobotnya dijumlahkan, akan di masukan ke variable bobots diatas
 			$bobots[] = $kr->bobot / $kriterias->sum('bobot');
 		}
+		// sebuah kondisi ketika kriteria nya bertipe 1 atau BENEFIT setiap bobotnya dilakukan count dan dilakukan proses mengalikan nilai elemen terakhir -1, sehingga nilai elemen tersebut berubah menjadi nilai awal dikalikan dengan -1 (diubah menjadi negatif).
 		if ($kr->type == 1){
 			$bobots[count($bobots) -1] *= -1;
 		}
 
 		// penentuan matriks keputusan
+		// pembuatan variable untuk menampung hasil matrixnya
 		$matrix = [];
+		// foreach ($alternatifs as $ka => $alt) untuk perulangan foreach ini digunakan untuk mengakses setiap elemen dalam array $alternatifs. Setiap elemen dalam array ini akan disimpan dalam variabel $alt, dan indeks dari elemen tersebut akan disimpan dalam variabel $ka
 		foreach ($alternatifs as $ka => $alt) {
+			// adalah prpses perulangan untuk setiap alternatif kriteria yang setiap elemen dalam array $alt->kriterianya akan disimpan dalam variable $kk, dan indeks dari elemen tersebut akan disimpan dalam variable $krit.
 			foreach ($alt->kriteria as $kk => $krit) {
+				// digunakan untuk menyimpan nilai dari $krit->pivot->nilai pada elemen matriks dengan baris $ka dan kolom $kk. untuk penjelasan $krit->pivot->nilai = adalah untuk mengisi nilai matrix yang dihasilkan dari data kriteria yang dihubungkan dengan data nilai
 				$matrix[$ka][$kk] = $krit->pivot->nilai;
 			}
 		}
@@ -65,7 +74,12 @@ class AnalisaController extends Controller
 
 		// masukkan hasil penilaian ke data alternatif
 		foreach ($alternatifs as $key => $alternatif) {
-			$alternatif->nilai = round($prefs[$key], 4);
+			if(isset($prefs[$key])) {
+				$alternatif->nilai = round($prefs[$key], 4);
+			}else {
+				$alternatif->nilai = 0;
+			}
+			// $alternatif->nilai = round($prefs[$key], 4);
 		}
 
 		return $alternatifs;

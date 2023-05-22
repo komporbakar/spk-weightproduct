@@ -52,17 +52,10 @@ class AlternatifController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'kode' => ['required'],
-            'name' => ['required'],
-            'jenis' => ['required'],
-        ]);
+        
+        $data = $request->all();
         $alternatif =  Alternatif::findOrFail($id);
-        $update = $alternatif->update([
-            'kode' => $request->kode,
-            'name' => $request->name,
-            'jenis' => $request->jenis,
-        ]);
+        $update = $alternatif->update($data);
 
         if ($update) {
             Alert::success('Data Berhasil di Update','success message');
@@ -86,6 +79,5 @@ class AlternatifController extends Controller
             Alert::error('Data gagal di Hapus');
             return redirect()->back();
         }
-
     }
 }

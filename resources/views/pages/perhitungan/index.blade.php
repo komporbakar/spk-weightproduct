@@ -44,7 +44,7 @@
                             @endforeach
                             <td colspan="1">
                                 <a href="{{ route('nilai.edit', $alt->id) }}" class="btn btn-info">Penilaian</a>
-                                <form action="" method="post" class="d-inline">
+                                <form action="{{ route('nilai.destroy', $alt->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <button class="btn btn-danger">

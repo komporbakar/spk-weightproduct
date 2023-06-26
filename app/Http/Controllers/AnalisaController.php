@@ -64,7 +64,7 @@ class AnalisaController extends Controller
 			$vectors[] = array_product($vec);
 		}
         
-		// penentuan nilai bobot preferensi
+		// penentuan nilai bobot preferensi vektor (v)
 		$prefs = [];
 		$sigma_si = array_sum($vectors);
 		foreach ($vectors as $vector) {

@@ -32,6 +32,7 @@ class AlternatifController extends Controller
             'kode' => $request->kode,
             'name' => $request->name,
             'jenis' => $request->jenis,
+            'tingkat'   => $request->tingkat,
         ]);
 
         if($data) {

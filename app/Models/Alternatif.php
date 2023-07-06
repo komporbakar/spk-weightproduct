@@ -12,7 +12,7 @@ class Alternatif extends Model
     // lepaskan proteksi mass assignment
 	protected $guarded = [];
 
-    protected $fillable = ['kode','name','jenis'];
+    protected $fillable = ['kode','name','jenis', 'tingkat'];
 
     public function kriteria()
 	{

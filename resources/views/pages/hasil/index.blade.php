@@ -10,6 +10,7 @@
                     <th>Rank</th>
                     <th>Kode</th>
                     <th>Alternatif</th>
+                    <th>Tingkat Sabuk</th>
                     <th>Nilai</th>
                 </thead>
                 <tbody>
@@ -20,6 +21,7 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $alternatif->kode }}</td>
                         <td>{{ $alternatif->name }}</td>
+                        <td>{{ $alternatif->tingkat }}</td>
                         <td>{{ $alternatif->nilai }}</td>
                     </tr>
                     @endforeach

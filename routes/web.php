@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// inisialisasi halaman awal sistem
 Route::get('/', fn () => redirect()->route('login'));
 
 Route::middleware([

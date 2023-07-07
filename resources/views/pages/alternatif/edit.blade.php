@@ -22,6 +22,24 @@
                     <label for="name">Nama Alternatif</label>
                     <input type="text" name="name" id="" class="form-control" value="{{ $alternatif->name }}" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="name">Event</label>
+                    <select name="event" id="" value="{{ $alternatif->event }}" class="form-control">
+                        <option value="popprov">popprov</option>
+                        <option value="prapon">prapon</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Tingkat Sabuk</label>
+                    <select name="tingkat" id="" value="{{ $alternatif->tingkat }}" class="form-control">
+                        <option value="kyu 2">Kyu 2</option>
+                        <option value="kyu 1">Kyu 1</option>
+                        <option value="dan 2">Dan 2</option>
+                        <option value="dan 1">Dan 1</option>
+                    </select>
+                </div>
                 
                 <div class="form-group">
                     <label for="name">Jenis Kelamin</label>

@@ -31,7 +31,9 @@ class AlternatifController extends Controller
         $data = Alternatif::create([
             'kode' => $request->kode,
             'name' => $request->name,
+            'event'   => $request->event,
             'jenis' => $request->jenis,
+            'tingkat'   => $request->tingkat,
         ]);
 
         if($data) {

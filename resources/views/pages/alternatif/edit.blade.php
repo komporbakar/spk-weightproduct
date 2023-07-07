@@ -24,6 +24,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="name">Event</label>
+                    <select name="event" id="" value="{{ $alternatif->event }}" class="form-control">
+                        <option value="popprov">popprov</option>
+                        <option value="prapon">prapon</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="name">Tingkat Sabuk</label>
                     <select name="tingkat" id="" value="{{ $alternatif->tingkat }}" class="form-control">
                         <option value="kyu 2">Kyu 2</option>

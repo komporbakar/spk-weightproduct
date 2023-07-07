@@ -43,8 +43,8 @@
                                                 <option value="{{ $sk->id }}" {{ $selected }}>{{ $sk->name }} ({{ $subkriteria_bobot[$k->id][$sk->id] }})</option>
                                                 @endforeach
                                             </select>
-                                        </td>   
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

@@ -21,6 +21,13 @@
                     <input type="text" name="name" id="" class="form-control" value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
+                    <label for="name">Event</label>
+                    <select name="event" id="jenis" class="form-control">
+                        <option value="popprov">popprov</option>
+                        <option value="prapon">prapon</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="name">Tingkat Sabuk</label>
                     <select name="tingkat" id="tingkat" class="form-control">
                         <option value="kyu 2">Kyu 2</option>

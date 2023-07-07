@@ -16,6 +16,7 @@
                             <th>No</th>
                             <th>Kode</th>
                             <th>Nama Alternatif</th>
+                            <th>Event</th>
                             <th>Tingkat Sabuk</th>
                             <th>Jenis Kelamin</th>
                             <th>Aksi</th>
@@ -28,6 +29,7 @@
                             <td>{{ $i++ }}</td>
                             <td colspan="">{{ $item->kode }}</td>
                             <td colspan="">{{ $item->name }}</td>
+                            <td colspan="">{{ $item->event }}</td>
                             <td colspan="">{{ $item->tingkat }}</td>
                             <td colspan="">
                                 @if ($item->jenis == 0)
